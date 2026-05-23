@@ -128,7 +128,7 @@ const getJobApplicants = async (req, res) => {
       resumeUrl
       verifiedProjects
       overallProgress
-      `
+      `,
     );
 
     if (!job) {
@@ -149,7 +149,6 @@ const getJobApplicants = async (req, res) => {
       totalApplicants: job.applicants.length,
       applicants: job.applicants,
     });
-
   } catch (error) {
     console.log(error);
 
@@ -182,8 +181,8 @@ const applyJob = async (req, res) => {
     }
 
     // Check duplicate application
-    const alreadyApplied = job.applicants.find(
-      (applicant) => applicant.student.toString() === req.user._id.toString(),
+    const alreadyApplied = job.applicants.some((applicant) =>
+      applicant.student.equals(req.user._id),
     );
 
     if (alreadyApplied) {
@@ -299,6 +298,39 @@ const updateApplicantStatus = async (req, res) => {
     });
   }
 };
+const getMyApplications = async (req, res) => {
+  try {
+    const jobs = await Job.find({
+      "applicants.student": req.user._id,
+    }).select(
+      "title companyName applicants"
+    );
+
+    const applications = jobs.map((job) => {
+      const myApplication = job.applicants.find(
+        (app) =>
+          app.student.toString() === req.user._id.toString()
+      );
+
+      return {
+        jobId: job._id,
+        title: job.title,
+        companyName: job.companyName,
+        status: myApplication.status || "pending",
+      };
+    });
+
+    res.json({
+      success: true,
+      applications,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch applications",
+    });
+  }
+};
 
 module.exports = {
   createJob,
@@ -307,4 +339,5 @@ module.exports = {
   applyJob,
   getJobApplicants,
   updateApplicantStatus,
+  getMyApplications,
 };

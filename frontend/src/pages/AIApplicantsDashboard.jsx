@@ -194,10 +194,7 @@ export default function AIApplicantsDashboard({ jobId = "sample-job-id" }) {
         {/* TOP COMMAND MODULE HEADER */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-900 pb-6">
           <div>
-            <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20 max-w-fit uppercase tracking-widest mb-3">
-              <BrainCircuit className="size-3.5 animate-pulse" /> Neural Talent
-              Pipeline Active
-            </div>
+           
             <h1 className="text-2xl sm:text-4xl font-black tracking-tigh bg-clip-text text-transparent bg-linear-to-r from-white via-slate-200 to-slate-400">
               Applications Control Desk
             </h1>

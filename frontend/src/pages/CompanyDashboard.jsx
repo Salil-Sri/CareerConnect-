@@ -27,6 +27,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { logoutUser } from "../services/authService";
+import CompanySidebar from "../components/CompanySidebar";
 
 const CompanyDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -116,10 +117,12 @@ const CompanyDashboard = () => {
       return;
     }
 
-    if (
-      tabName === "Applicants Pipeline" ||
-      tabName === "AI Candidate Insights"
-    ) {
+    if (tabName === "Active Jobs") {
+      navigate("/company-dashboard/applicants-list");
+      return;
+    }
+
+    if (tabName === "AI Candidate Insights") {
       if (!jobs.length) {
         alert("No jobs posted yet. Post a job first to see applicants.");
         return;
@@ -216,12 +219,10 @@ const CompanyDashboard = () => {
                 <Cpu className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-sm font-extrabold tracking-tight text-white">
+                <h1 className="text-xl font-extrabold tracking-tight text-white">
                   CareerConnect
                 </h1>
-                <span className="text-[10px] font-mono tracking-widest text-indigo-400 uppercase font-bold block">
-                  Recruit OS v1.0
-                </span>
+               
               </div>
             </div>
             <button
@@ -235,12 +236,8 @@ const CompanyDashboard = () => {
           <nav className="p-4 space-y-1.5">
             {[
               { name: "Dashboard Overview", icon: LayoutDashboard },
-              { name: "Active Listings", icon: Briefcase },
-              { name: "Applicants Pipeline", icon: Users2 },
+              { name: "Active Jobs", icon: Users2 },
               { name: "AI Candidate Insights", icon: Cpu },
-              { name: "Interviews", icon: CalendarDays },
-              { name: "Analytics", icon: BarChart3 },
-              { name: "Company Settings", icon: Settings },
             ].map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.name;
@@ -300,14 +297,6 @@ const CompanyDashboard = () => {
             >
               <Menu className="h-5 w-5" />
             </button>
-            <div className="relative w-full hidden sm:block">
-              <Search className="absolute left-3.5 top-2.5 h-4 w-4 text-slate-500" />
-              <input
-                type="text"
-                placeholder="Search live database parameters..."
-                className="w-full bg-slate-900/60 border border-slate-800/80 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-hidden focus:border-indigo-500/50 transition-all duration-200"
-              />
-            </div>
           </div>
 
           <div className="flex items-center gap-4">
@@ -319,10 +308,7 @@ const CompanyDashboard = () => {
                 className={`h-3.5 w-3.5 ${loading ? "animate-spin text-indigo-400" : ""}`}
               />
             </button>
-            <div className="hidden md:flex items-center gap-2 bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-xl text-[10px] font-mono font-bold text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />{" "}
-              LIVE DB CONNECTION ESTABLISHED
-            </div>
+
             <div className="flex items-center gap-2.5 pl-2 border-l border-slate-800/60">
               <div className="w-9 h-9 rounded-xl bg-linear-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center text-xs font-bold text-white">
                 {displayName.charAt(0).toUpperCase()}
@@ -345,15 +331,8 @@ const CompanyDashboard = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-900 pb-6">
             <div>
               <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                Recruitment Matrix Engine{" "}
-                <span className="text-xs font-normal text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20 font-mono">
-                  WORKSPACE: DISPATCHER
-                </span>
+                Recruitment Window
               </h2>
-              <p className="text-slate-400 text-xs sm:text-sm mt-1">
-                Direct linked engine tracking live MERN stack database
-                configurations context.
-              </p>
             </div>
             <button
               onClick={() => setShowPostModal(true)}
@@ -370,19 +349,19 @@ const CompanyDashboard = () => {
               {
                 title: "Total Jobs Posted",
                 value: totalJobs,
-                change: "Live channel counts",
+                change: "Job counts",
                 icon: Briefcase,
                 color: "text-blue-400",
               },
               {
-                title: "Total Applicants Captured",
+                title: "Total Applicants",
                 value: totalApplicants,
-                change: "Linked across channels",
+                change: "",
                 icon: Users2,
                 color: "text-purple-400",
               },
               {
-                title: "Active Channels Running",
+                title: "Active Jobs Running",
                 value: activeChannels,
                 change: "Accepting entries",
                 icon: Cpu,
@@ -391,7 +370,7 @@ const CompanyDashboard = () => {
               {
                 title: "Database Integrity Match",
                 value: "98.4%",
-                change: "Pipeline validation safe",
+                change: "",
                 icon: Sparkles,
                 color: "text-amber-400",
               },
@@ -432,13 +411,9 @@ const CompanyDashboard = () => {
               <div className="p-6 bg-slate-900/30 border border-slate-800/60 rounded-2xl space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-800/40 pb-4">
                   <div>
-                    <h3 className="text-sm font-extrabold text-white tracking-tight">
-                      Active Job Stream Pipeline
+                    <h3 className="text-2xl font-extrabold text-white tracking-tight">
+                      Active Jobs
                     </h3>
-                    <p className="text-[11px] text-slate-500">
-                      Live configuration matrices fetched directly from database
-                      schema
-                    </p>
                   </div>
                 </div>
 
@@ -455,9 +430,9 @@ const CompanyDashboard = () => {
                     <table className="w-full text-left border-collapse text-xs">
                       <thead>
                         <tr className="border-b border-slate-800/60 bg-slate-900/40 font-mono text-[10px] text-slate-400 uppercase">
-                          <th className="p-4 font-bold">Role Vector</th>
+                          <th className="p-4 font-bold">Role </th>
                           <th className="p-4 font-bold text-center">
-                            Applicants Pool
+                            Applicants Count
                           </th>
                           <th className="p-4 font-bold">Location</th>
                           <th className="p-4 font-bold text-center">
@@ -520,12 +495,9 @@ const CompanyDashboard = () => {
             <div>
               <div className="p-6 bg-slate-900/30 border border-slate-800/60 rounded-2xl space-y-4">
                 <div className="flex items-center gap-2 border-b border-slate-800/40 pb-4">
-                  <div className="p-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400">
-                    <Sparkles className="h-4 w-4" />
-                  </div>
                   <div>
-                    <h3 className="text-sm font-extrabold text-white tracking-tight">
-                      AI Rank Stream Insights
+                    <h3 className="text-xl font-extrabold text-white tracking-tight">
+                      Applicants Rank Insights
                     </h3>
                     <p className="text-[11px] text-slate-500">
                       Live calculated top application resume scores
@@ -534,37 +506,22 @@ const CompanyDashboard = () => {
                 </div>
 
                 <div className="space-y-3">
-                  {livePipelineFeed.length === 0 ? (
-                    <p className="text-xs font-mono text-slate-500 p-4 text-center">
-                      No rank nodes queued yet.
-                    </p>
-                  ) : (
-                    livePipelineFeed.map((applicant, index) => (
+                  {livePipelineFeed.length ? (
+                    livePipelineFeed.map((p) => (
                       <div
-                        key={index}
-                        className="p-3.5 bg-slate-950/60 border border-slate-800/80 rounded-xl space-y-2"
+                        key={p.studentId}
+                        className="flex items-center justify-between"
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono text-slate-400 truncate max-w-32.5">
-                            ID:{" "}
-                            {typeof applicant.studentId === "object"
-                              ? applicant.studentId.name ||
-                                applicant.studentId.email ||
-                                applicant.studentId._id
-                              : applicant.studentId}
-                          </span>
-                          <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                            Score: {applicant.resumeScore}%
-                          </span>
+                        <div className="text-sm font-bold">{p.jobTitle}</div>
+                        <div className="text-xs text-slate-400">
+                          Score: {p.resumeScore}
                         </div>
-                        <p className="text-xs font-bold text-slate-200 truncate">
-                          Applied: {applicant.jobTitle}
-                        </p>
-                        <span className="text-[10px] text-slate-500 block">
-                          System Timestamp: {applicant.appliedAt}
-                        </span>
                       </div>
                     ))
+                  ) : (
+                    <div className="text-xs text-slate-500">
+                      No candidates yet
+                    </div>
                   )}
                 </div>
               </div>

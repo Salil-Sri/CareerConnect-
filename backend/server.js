@@ -26,12 +26,14 @@ const studentRoutes = require("./routes/studentRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 const projectVerificationRoutes = require("./routes/projectVerificationRoutes");
 const jobRoutes = require("./routes/jobRoutes");
+const skillRoutes = require("./routes/skillRoutes");
 app.use("/api/auth", authRoutes);
 app.use("/api/student", studentRoutes);
 app.use("/api/mentor", require("./routes/mentorRoutes"));
 app.use("/api/resume", resumeRoutes);
 app.use("/api/project", projectVerificationRoutes);
 app.use("/api/jobs", jobRoutes);
+app.use("/api/skills", skillRoutes);
 
 
 app.get("/", (req, res) => {

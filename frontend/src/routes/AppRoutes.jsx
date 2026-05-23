@@ -10,6 +10,8 @@ import ResumeAnalyzer from "../pages/ResumeAnalyzer";
 import Auth from "../pages/Auth";
 import AIMentor from "../pages/AIMentor";
 import ProjectVerification from "../pages/ProjectVerification";
+import SkillTestDashboard from "../pages/SkillTestDashboard";
+import ApplicantsList from "../pages/Applicantslist";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 import DashboardLayout from "../components/DashboardLayout"; // ← Naya Layout import karo (path check karlena)
@@ -41,6 +43,14 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/company-dashboard/applicants-list"
+          element={
+            <ProtectedRoute allowedRoles={["company"]}>
+              <ApplicantsList />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/auth" element={<Auth />} />
 
         {/* Protected & Layout Routes (In sabme Auth Check aur Sidebar automatic chalega) */}
@@ -56,6 +66,7 @@ const AppRoutes = () => {
           <Route path="/jobs" element={<StudentJobPortal />} />
           <Route path="/aimentor" element={<AIMentor />} />
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+          <Route path="/skill-test" element={<SkillTestDashboard />} />
           <Route
             path="/project-verification"
             element={<ProjectVerification />}

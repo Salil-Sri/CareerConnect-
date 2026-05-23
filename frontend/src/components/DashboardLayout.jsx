@@ -28,7 +28,16 @@ const DashboardLayout = () => {
         setLoading(false);
       }
     };
+
+    // initial load
     fetchDashboardData();
+
+    // Listen for cross-component updates (e.g., after passing a skill test)
+    window.addEventListener("studentDataUpdated", fetchDashboardData);
+
+    return () => {
+      window.removeEventListener("studentDataUpdated", fetchDashboardData);
+    };
   }, []);
 
   if (loading) {

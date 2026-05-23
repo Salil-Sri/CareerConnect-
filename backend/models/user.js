@@ -60,6 +60,28 @@ const userSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    verifiedSkills: [
+      {
+        skill: {
+          type: String,
+        },
+
+        score: {
+          type: Number,
+          default: 0,
+        },
+
+        verified: {
+          type: Boolean,
+          default: false,
+        },
+
+        verifiedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
 
     missingSkills: {
       type: [String],

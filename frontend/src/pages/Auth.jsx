@@ -257,9 +257,7 @@ const Auth = () => {
         {/* Dynamic Context Footer */}
         <div className="mt-6 text-center text-xs text-slate-500">
           By continuing, you agree to CareerConnect terms of service. <br />
-          <span className="inline-flex items-center gap-1 mt-3 text-indigo-400/80">
-            <Sparkles className="h-3 w-3" /> Encrypted Endpoint Data Channel
-          </span>
+          
         </div>
       </div>
     </div>

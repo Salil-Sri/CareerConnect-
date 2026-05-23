@@ -17,6 +17,7 @@ const getStudentDashboard = async (req, res) => {
       appliedJobs: student.appliedJobs,
       overallProgress: student.overallProgress,
       skills: student.skills,
+      verifiedSkills: student.verifiedSkills,
       githubLink: student.githubLink,
       resumeUrl: student.resumeUrl,
     });

@@ -8,6 +8,7 @@ import {
   LogOut,
   User,
   Briefcase,
+  BadgeCheck,
 } from "lucide-react";
 
 const Sidebar = ({ studentData, activeTab, setActiveTab, handleLogout }) => {
@@ -35,6 +36,12 @@ const Sidebar = ({ studentData, activeTab, setActiveTab, handleLogout }) => {
             { id: "jobs", label: "Jobs", icon: Briefcase },
             { id: "ai-mentor", label: "AI Mentor Bot", icon: Bot, badge: "AI" },
             {
+              id: "skill-test",
+              label: "Skill Test",
+              icon: BadgeCheck,
+              badge: "",
+            },
+            {
               id: "github-verification",
               label: "Project Verification",
               icon: Bot,
@@ -49,6 +56,7 @@ const Sidebar = ({ studentData, activeTab, setActiveTab, handleLogout }) => {
                 onClick={() => {
                   if (item.id === "ai-mentor") navigate("/aimentor");
                   else if (item.id === "jobs") navigate("/jobs");
+                  else if (item.id === "skill-test") navigate("/skill-test");
                   else if (item.id === "resume-analyzer")
                     navigate("/resume-analyzer");
                   else if (item.id === "courses") navigate("/courses");

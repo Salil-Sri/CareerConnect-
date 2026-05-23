@@ -101,7 +101,7 @@ const Courses = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800/60 pb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-              Curated Upskilling Engine <span className="text-xs font-normal text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md border border-purple-500/20">Self-Paced Resources</span>
+               Upskilling Courses 
             </h1>
             <p className="text-slate-400 text-xs sm:text-sm mt-1">
               Bridge your missing engineering core gaps instantly by watching premium targeted developer video roadmaps.
