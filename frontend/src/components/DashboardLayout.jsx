@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { logoutUser } from "../services/authService";
 import { Search, Bell } from "lucide-react";
+import API_BASE_URL from "../config/api";
 
 const DashboardLayout = () => {
   const [studentData, setStudentData] = useState(null);
@@ -15,7 +16,7 @@ const DashboardLayout = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:4000/api/student/dashboard",
+          `${API_BASE_URL}/student/dashboard`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },

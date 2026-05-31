@@ -711,7 +711,7 @@ const CompanyDashboard = () => {
                   type="submit"
                   className="px-5 py-2 bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl transition-all shadow-md shadow-indigo-500/10 cursor-pointer"
                 >
-                  Dispatch Stream
+                  Post Job
                 </button>
               </div>
             </form>
