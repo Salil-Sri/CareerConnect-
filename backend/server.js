@@ -14,11 +14,32 @@ const app = express();
 app.use(express.json());
 
 // CORS
+const allowedOrigins = new Set(
+  [
+    process.env.FRONTEND_URL,
+    "https://career-connect-hazel.vercel.app",
+    "http://localhost:5173",
+  ].filter(Boolean),
+);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin(origin, callback) {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (
+        allowedOrigins.has(origin) ||
+        /^https:\/\/.*\.vercel\.app$/.test(origin)
+      ) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
-  })
+  }),
 );
 
 // Routes
@@ -34,7 +55,6 @@ app.use("/api/resume", resumeRoutes);
 app.use("/api/project", projectVerificationRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/skills", skillRoutes);
-
 
 app.get("/", (req, res) => {
   res.send("API is running");

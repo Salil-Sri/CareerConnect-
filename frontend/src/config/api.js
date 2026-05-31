@@ -1,8 +1,21 @@
 // API Configuration
-export const API_BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost:4000/api";
+const normalizeApiBaseUrl = (value) => {
+  const rawValue = (value || "").trim();
+
+  if (!rawValue) {
+    return "http://localhost:4000/api";
+  }
+
+  const withProtocol = rawValue.startsWith("http://") || rawValue.startsWith("https://")
+    ? rawValue
+    : `https://${rawValue}`;
+
+  return withProtocol.replace(/\/?$/, "").replace(/\/api\/?$/, "/api");
+};
+
+export const API_BASE_URL = normalizeApiBaseUrl(
+  import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL,
+);
 
 // Base server URL (without /api) — useful for direct file links
 export const SERVER_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, "");
