@@ -27,6 +27,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { logoutUser } from "../services/authService";
+import { API_BASE_URL } from "../config/api";
 import CompanySidebar from "../components/CompanySidebar";
 
 const CompanyDashboard = () => {
@@ -59,16 +60,13 @@ const CompanyDashboard = () => {
       // Local storage ya context se token fetch context logic
       const token = localStorage.getItem("token") || "";
 
-      const response = await fetch(
-        "http://localhost:4000/api/jobs/company-jobs",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Protect middleware mapping
-          },
+      const response = await fetch(`${API_BASE_URL}/jobs/company-jobs`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Protect middleware mapping
         },
-      );
+      });
 
       const data = await response.json();
       if (data.success) {
@@ -149,7 +147,7 @@ const CompanyDashboard = () => {
           .filter(Boolean),
       };
 
-      const response = await fetch("http://localhost:4000/api/jobs/create", {
+      const response = await fetch(`${API_BASE_URL}/jobs/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -222,7 +220,6 @@ const CompanyDashboard = () => {
                 <h1 className="text-xl font-extrabold tracking-tight text-white">
                   CareerConnect
                 </h1>
-               
               </div>
             </div>
             <button

@@ -1,6 +1,6 @@
 // controllers/resumeController.js
 
-const User = require("../models/User");
+const User = require("../models/user");
 const { extractResumeText } = require("../services/resumeParser");
 const { analyzeResumeWithGemini } = require("../services/geminiService");
 

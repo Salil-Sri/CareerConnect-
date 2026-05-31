@@ -1,5 +1,5 @@
 const Job = require("../models/Job");
-const User = require("../models/User");
+const User = require("../models/user");
 
 // CREATE JOB
 

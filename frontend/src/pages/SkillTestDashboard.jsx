@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TestScreen from "../components/TestScreen";
+import { API_BASE_URL as APP_API_BASE } from "../config/api";
 
 // Axios configurations for credentials (CORS support)
 axios.defaults.withCredentials = true;
-const API_BASE_URL = "http://localhost:4000/api/skills";
+const API_BASE_URL = `${APP_API_BASE}/skills`;
 
 // Aap yahan aur bhi skills add kar sakte hain jo DB me ho
 const AVAILABLE_SKILLS = ["MongoDB", "React", "Node.js", "Express", "Angular"];

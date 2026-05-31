@@ -15,6 +15,7 @@ import {
   Bookmark,
   GraduationCap,
 } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 export default function StudentJobPortal() {
   const [jobs, setJobs] = useState([]);
@@ -37,7 +38,7 @@ export default function StudentJobPortal() {
       setLoading(true);
       const token = localStorage.getItem("token") || "";
 
-      const response = await fetch("http://localhost:4000/api/jobs", {
+      const response = await fetch(`${API_BASE_URL}/jobs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -90,16 +91,13 @@ export default function StudentJobPortal() {
       setApplyingId(jobId);
       const token = localStorage.getItem("token") || "";
 
-      const response = await fetch(
-        `http://localhost:4000/api/jobs/apply/${jobId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API_BASE_URL}/jobs/apply/${jobId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       const data = await response.json();
       if (data.success) {

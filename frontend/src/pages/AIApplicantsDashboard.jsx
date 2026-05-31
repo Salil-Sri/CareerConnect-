@@ -21,7 +21,7 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
-import API_BASE_URL from "../config/api";
+import { API_BASE_URL, SERVER_BASE_URL } from "../config/api";
 
 export default function AIApplicantsDashboard({ jobId = "sample-job-id" }) {
   const navigate = useNavigate();
@@ -194,7 +194,6 @@ export default function AIApplicantsDashboard({ jobId = "sample-job-id" }) {
         {/* TOP COMMAND MODULE HEADER */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-900 pb-6">
           <div>
-           
             <h1 className="text-2xl sm:text-4xl font-black tracking-tigh bg-clip-text text-transparent bg-linear-to-r from-white via-slate-200 to-slate-400">
               Applications Control Desk
             </h1>
@@ -512,7 +511,7 @@ export default function AIApplicantsDashboard({ jobId = "sample-job-id" }) {
                         <div className="flex gap-2 text-[11px] font-bold">
                           {student.resumeUrl && (
                             <a
-                              href={`http://localhost:4000/${student.resumeUrl}`}
+                              href={`${SERVER_BASE_URL}/${student.resumeUrl}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="flex-1 bg-slate-950 hover:bg-slate-900 border border-slate-800 text-slate-300 px-3 py-2 rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"

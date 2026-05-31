@@ -1,5 +1,5 @@
 const SkillQuestion = require("../models/SkillQuestion");
-const User = require("../models/User");
+const User = require("../models/user");
 
 
 // GET QUESTIONS

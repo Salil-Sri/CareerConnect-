@@ -12,6 +12,7 @@ import {
   Sparkles,
   ArrowUpRight,
 } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 const StudentDashboard = () => {
   // Layout se jo data pass kiya tha, use yahan capture kar rahe hain
@@ -21,15 +22,12 @@ const StudentDashboard = () => {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        "http://localhost:4000/api/jobs/my-applications",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+      const response = await fetch(`${API_BASE_URL}/jobs/my-applications`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       const data = await response.json();
       if (data.success) {
